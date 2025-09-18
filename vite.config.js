@@ -17,7 +17,13 @@ export default defineConfig({
   },
   server: {
     port: 3001,
-    host: true
+    host: true,
+    allowedHosts: [
+      'localhost',
+      '127.0.0.1',
+      'gh-8vga.onrender.com',
+      '.onrender.com'
+    ]
   },
   preview: {
     port: 3001,
