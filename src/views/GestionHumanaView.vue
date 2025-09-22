@@ -125,6 +125,22 @@
         </div>
       </div>
     </div>
+    
+    <!-- Accesos directos a Tecnología (Inventario y Tickets) -->
+    <div class="it-shortcuts">
+      <h2>Accesos rápidos a Tecnología</h2>
+      <p>Necesitas registrar o consultar equipamiento y tickets.</p>
+      <div class="it-actions">
+        <button class="it-btn" @click="goToIT('/inventario')">
+          <i class="fas fa-boxes"></i>
+          Ir a Inventario de TI
+        </button>
+        <button class="it-btn secondary" @click="goToIT('/tickets')">
+          <i class="fas fa-ticket-alt"></i>
+          Ir a Tickets de TI
+        </button>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -144,6 +160,12 @@ const reportesDisponibles = ref(15)
 
 const navigateTo = (path) => {
   router.push(path)
+}
+
+// Navegación hacia el micro de IT desde Gestión Humana
+function goToIT(path = '/') {
+  // Enviar mensaje al root para que navegue al módulo IT y setee la ruta
+  window.parent?.postMessage({ type: 'navigate', module: 'it', path }, '*')
 }
 </script>
 
@@ -212,6 +234,59 @@ const navigateTo = (path) => {
   max-width: 1400px;
   margin: 0 auto;
   padding: 60px 20px;
+}
+
+.it-shortcuts {
+  max-width: 1400px;
+  margin: 0 auto 60px auto;
+  padding: 0 20px;
+}
+
+.it-shortcuts h2 {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #1e293b;
+  margin-bottom: 10px;
+}
+
+.it-shortcuts p {
+  color: #64748b;
+  margin-bottom: 16px;
+}
+
+.it-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.it-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+  color: #fff;
+  border: none;
+  padding: 12px 16px;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: 700;
+  box-shadow: 0 8px 24px rgba(37,99,235,0.25);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.it-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(37,99,235,0.3);
+}
+
+.it-btn.secondary {
+  background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+  box-shadow: 0 8px 24px rgba(34,197,94,0.25);
+}
+
+.it-btn i {
+  font-size: 14px;
 }
 
 .dashboard-grid {
