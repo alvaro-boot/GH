@@ -55,6 +55,10 @@
             placeholder="Buscar empleado..."
             class="search-input"
           >
+          <button @click="goToTickets" class="btn-tickets">
+            <i class="fas fa-ticket-alt"></i>
+            Tickets TI
+          </button>
           <button @click="exportNomina" class="btn-export">
             <i class="fas fa-download"></i>
             Exportar
@@ -241,6 +245,12 @@ const viewDetails = (employee) => {
   selectedEmployee.value = employee
   showDetailsModal.value = true
 }
+
+// Navegación hacia el micro de IT desde Nómina
+const goToTickets = () => {
+  // Enviar mensaje al root para que navegue al módulo IT y setee la ruta de tickets
+  window.parent?.postMessage({ type: 'navigate', module: 'it', path: '/tickets' }, '*')
+}
 </script>
 
 <style scoped>
@@ -365,6 +375,24 @@ const viewDetails = (employee) => {
 .search-input:focus {
   outline: none;
   border-color: #667eea;
+}
+
+.btn-tickets {
+  background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(217, 119, 6, 0.2);
+}
+
+.btn-tickets:hover {
+  background: linear-gradient(135deg, #d97706 0%, #b45309 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(217, 119, 6, 0.3);
 }
 
 .btn-export {
