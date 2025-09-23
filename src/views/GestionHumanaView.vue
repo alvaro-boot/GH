@@ -30,7 +30,7 @@
         </div>
 
         <!-- Nómina -->
-        <div class="card" @click="navigateTo('/nomina')">
+        <div class="card">
           <div class="card-icon">
             <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M12 1V23" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -43,6 +43,16 @@
             <div class="stat">
               <span class="stat-number">${{ nominaTotal.toLocaleString() }}</span>
               <span class="stat-label">Total nómina mensual</span>
+            </div>
+            <div class="card-actions">
+              <button class="action-btn primary" @click.stop="navigateTo('/nomina')">
+                <i class="fas fa-calculator"></i>
+                Gestionar Nómina
+              </button>
+              <button class="action-btn tickets" @click.stop="goToIT('/tickets')">
+                <i class="fas fa-ticket-alt"></i>
+                Tickets TI
+              </button>
             </div>
           </div>
         </div>
@@ -391,6 +401,53 @@ function goToIT(path = '/') {
   font-weight: 500;
   text-transform: uppercase;
   letter-spacing: 0.05em;
+}
+
+.card-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.action-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  flex: 1;
+  justify-content: center;
+}
+
+.action-btn.primary {
+  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+  color: white;
+  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.2);
+}
+
+.action-btn.primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+}
+
+.action-btn.tickets {
+  background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+  color: white;
+  box-shadow: 0 2px 8px rgba(217, 119, 6, 0.2);
+}
+
+.action-btn.tickets:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(217, 119, 6, 0.3);
+}
+
+.action-btn i {
+  font-size: 12px;
 }
 
 @media (max-width: 768px) {
