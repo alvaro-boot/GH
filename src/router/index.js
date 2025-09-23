@@ -2,7 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import GestionHumanaView from '../views/GestionHumanaView.vue'
 
 const router = createRouter({
-  history: createWebHistory('/gestion-humana'),
+  history: createWebHistory(),
   routes: [
     {
       path: '/',
