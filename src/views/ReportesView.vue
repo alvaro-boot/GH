@@ -75,6 +75,12 @@
 
     <div class="reports-section">
       <h2>Reportes Disponibles</h2>
+      <div style="display:flex; justify-content:flex-end; margin-bottom:12px; gap:12px;">
+        <button class="btn-go-ops" @click="goToOperacionesMantenimiento">
+          <i class="fas fa-wrench"></i>
+          Ir a Mantenimiento (Operaciones)
+        </button>
+      </div>
       <div class="reports-grid">
         <div 
           v-for="reporte in reportes" 
@@ -207,6 +213,18 @@ const generateReport = () => {
 
 const downloadReport = (reporte) => {
   console.log('Descargando reporte:', reporte.titulo)
+}
+
+const goToOperacionesMantenimiento = () => {
+  try {
+    window.parent?.postMessage({
+      type: 'navigate',
+      module: 'operaciones',
+      path: '/mantenimiento'
+    }, '*')
+  } catch (e) {
+    console.error('No se pudo navegar a Operaciones/Mantenimiento', e)
+  }
 }
 </script>
 
@@ -430,6 +448,25 @@ const downloadReport = (reporte) => {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
   gap: 30px;
+}
+
+.btn-go-ops {
+  background: #ed8936;
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.2s ease;
+}
+
+.btn-go-ops:hover {
+  filter: brightness(1.05);
+  transform: translateY(-1px);
 }
 
 .chart-container {
